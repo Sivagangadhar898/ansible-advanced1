@@ -8,10 +8,10 @@
   dno: 321
   city: abcd
   country: dcba
-#this is the lists
+  #this is the lists
   adresses:
   -type: perm
-   city: abcdefghi
+   city: kkd
    country: kmlfngdkj
 
   -type: current
