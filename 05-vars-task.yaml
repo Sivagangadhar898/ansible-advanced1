@@ -4,7 +4,7 @@
   vars:
   - money: "10000 RS"
     land: "100 hectars"
-    tasks:
+  tasks:
   - name: inherit values from play
     ansible.builtin.debug:
       msg: "MONEY: {{money}}, LAND: {{land}}"
@@ -12,5 +12,5 @@
     vars:
     - money: "2000 rs"
       houses: "3 houses" 
-      ansible.builtin.debug:
-        msg: "MONEY: {{money}}, LAND: {{land}}, Houses: {{houses}}"
+    ansible.builtin.debug:
+      msg: "MONEY: {{money}}, LAND: {{land}}, houses: {{houses}}"
