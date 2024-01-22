@@ -1,7 +1,5 @@
 - name: testing variable precedence
   hosts: mongodb
-  vars:
-    NAME: siva-play
   tasks:
   - name: variable at task level
     ansible.builtin.debug:
