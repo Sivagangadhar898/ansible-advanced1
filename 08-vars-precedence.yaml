@@ -1,11 +1,11 @@
 - name: testing variable precedence
   hosts: mongodb
   vars:
-    NAME: Siva-play
+    NAME: siva-play
   vars_files:
   - FILES.yaml
   vars_prompt:
-  - name: USERNAME
+  - name: NAME
     prompt: please enter Trainer Name
     private: false 
   tasks:
