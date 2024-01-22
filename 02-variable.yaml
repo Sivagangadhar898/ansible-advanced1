@@ -7,7 +7,7 @@
   tasks:
   - name: print hellow world
     ansible.builtin.debug:
-    msg: "Hellow Iam learning DevOps"
+     msg: "Hellow Iam learning DevOps"
   - name: print variables
     ansible.builtin.debug:
-    msg: "Hellow, Iam Learning {{COURSE}}, Trainer is {{TRAINER}}, Duration is {{DURATION}}"   
+     msg: "Hellow, Iam Learning {{COURSE}}, Trainer is {{TRAINER}}, Duration is {{DURATION}}"   
