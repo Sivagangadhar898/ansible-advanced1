@@ -4,7 +4,7 @@
   - AGE: 30 #numbers
   - NAME: siva #sting
   - isDevOps: true #boolean
-  -skills:  #list
+  - skills:  #list
   - DevOps
   - Aws
   - Docker
