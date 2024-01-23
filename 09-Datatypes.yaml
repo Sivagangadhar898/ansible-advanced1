@@ -4,7 +4,7 @@
   - AGE: 30 #numbers
   - NAME: siva #sting
   - isDevOps: true #boolean
-  -Skills:  #list
+  -skills:  #list
   - DevOps
   - Aws
   - Docker
@@ -24,7 +24,7 @@
      msg: "{{isDevOps}}"
   - name: print number variable
     ansible.builtin.debug:
-     msg: "{{Skills}}"
+     msg: "{{skills}}"
   - name: print number variable
     ansible.builtin.debug:
      msg: "{{EXPERIENCE}}"
