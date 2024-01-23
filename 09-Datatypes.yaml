@@ -9,9 +9,9 @@
   - Aws
   - Docker
   - EXPERIENCE:  #map
-  DevOps: 7
-  Aws: 5
-  Docker: 4
+    DevOps: 7
+    Aws: 5
+    Docker: 4
   tasks:
   - name: print number variable
     ansible.builtin.debug:
