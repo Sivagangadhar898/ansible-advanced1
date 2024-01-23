@@ -1,17 +1,17 @@
 - name: ansible variable data types
   hosts: localhost
   vars:
-    - AGE: 30 #numbers
-    - NAME: siva #sting
-    - isDevOps: true #boolean
+  - AGE: 30 #numbers
+  - NAME: siva #sting
+  - isDevOps: true #boolean
   -Skills:  #list
-    - DevOps
-    - Aws
-    - Docker
+  - DevOps
+  - Aws
+  - Docker
   - EXPERIENCE:  #map
-    DevOps: 7
-    Aws: 5
-    Docker: 4
+  DevOps: 7
+  Aws: 5
+  Docker: 4
   tasks:
   - name: print number variable
     ansible.builtin.debug:
