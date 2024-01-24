@@ -5,4 +5,6 @@
   # when you want to run linux commands directly in the case ansible module not available
   # when the user does not exists, ansible treating this failure and comeout by default
   # ignore_errors: true
+  ansible.builtin.command: id roboshop
+  register: output #output is variable name
   
