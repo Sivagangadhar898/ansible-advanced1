@@ -4,6 +4,6 @@
    NAME: Dev0ps
   tasks:
   - name: run this if name is DevOps 
-   ansible.builtin.debug:
-    msg: "Hello {{NAME}}"
-   when: NAME== "DevOps" 
+    ansible.builtin.debug:
+     msg: "Hello {{NAME}}"
+    when: NAME== "DevOps" 
