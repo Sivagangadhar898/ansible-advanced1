@@ -16,8 +16,8 @@
     ansible.builtin.debug:
       msg: "{{output.rc}}"
   - name: create user roboshop
-    become: yes
+    become: yes #we need sudo access for this task only
     ansible.builtin.user:
-      user: roboshop
-    when: output.rc != 0
+      name: roboshop
+    when: output.rc != 0 #if this expression is true then only this modules will run
 
