@@ -8,3 +8,16 @@
   ansible.builtin.command: id roboshop
   register: output #output is variable name
   ignore_errors: true
+
+  - name: print the command output
+    ansible.builtin.debug:
+      msg: "outout is: {{output}}"
+  - name: print exist status
+    ansible.builtin.debug:
+      msg: "{{output.rc}}"
+  - name: create user roboshop
+    become: yes
+    ansible.builtin.user:
+      user: roboshop
+    when: output.rc != 0
+
