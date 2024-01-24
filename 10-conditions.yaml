@@ -7,4 +7,4 @@
     # ignore_errors: true
   ansible.builtin.command: id roboshop
   register: output #output is variable name
-  
+  ignore_errors: true
