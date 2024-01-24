@@ -8,5 +8,4 @@
       state: installed
     loop:
     - nginx
-    - postmap
-    
+    - postfix
