@@ -23,6 +23,11 @@
     ansible.builtin.stat:
       path: /app
     register: box
+  
+  - name: print msg
+    ansible.builtin.debug:
+     msg: "message is: {{box}}"
+     
 
     
 
