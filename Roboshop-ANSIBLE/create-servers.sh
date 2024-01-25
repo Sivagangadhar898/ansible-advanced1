@@ -2,7 +2,7 @@
 
 NAMES=$@
 INSTANCE_TYPE=""
-IMAGE_ID=ami-03265a0778a880afb
+IMAGE_ID=ami-0ab62d4858e6e2a26
 SECURITY_GROUP_ID=sg-0feb1eadee760c918
 DOMAIN_NAME=joiningindevops.online
 
