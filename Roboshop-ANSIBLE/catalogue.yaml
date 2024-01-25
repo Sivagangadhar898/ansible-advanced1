@@ -3,11 +3,13 @@
   become: yes
   tasks:
   - name: setup NPM source
-    ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+    ansible.builtin.shell: "curl -sL https://rpm.nodesource.com/setup_lts.x | bash"
+  
   - name: Install N0de-JS
     ansible.builtin.yum:
       name: nodejs 
       state: installed
+      
   - name: check roboshop user exist or not
     ansible.builtin.command: id roboshop
     register: output 
@@ -50,15 +52,16 @@
     args:
       chdir: /app
   
-  - name: deamon reload
-    ansible.builtin.systemd:
-      daemon_reload: true
   
   - name: copy catalogue service
     ansible.builtin.copy:
       src: catalogue.service
       dest: /etc/systemd/system/catalogue.service
-
+  
+  - name: deamon reload
+    ansible.builtin.systemd:
+      daemon_reload: true
+  
   - name: Install MongoDB
     ansible.builtin.yum:
       name: mongodb-org-shell
