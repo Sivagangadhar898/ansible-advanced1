@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 NAMES=$@
 INSTANCE_TYPE=""
