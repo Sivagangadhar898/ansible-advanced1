@@ -5,6 +5,7 @@
     ansible.builtin.repo:
       src: mongodb.repo
       dest: /etc/yum.repos.d/mongo.repo
+
   - name: install mongodb
     ansible.builtin.yum:
       name: mongodb-org
@@ -19,10 +20,10 @@
   - name: update listen address
     ansible.builtin.replace:
       path: /etc/mongod.conf
-      regexp: 127.0.0.1 
-      replace: 0.0.0.0
+      regexp: '127.0.0.1'
+      replace: '0.0.0.0'
 
-  - name: Restart service httpd, in all cases
+  - name: restart service 
     ansible.builtin.service:
       name: mongod
       state: restarted
