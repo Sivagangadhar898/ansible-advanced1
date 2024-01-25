@@ -5,7 +5,7 @@ INSTANCE_TYPE=""
 IMAGE_ID=ami-0ab62d4858e6e2a26
 SECURITY_GROUP_ID=sg-044648b9b2c8833e8
 DOMAIN_NAME=joiningindevops.online
-HOSTED_ZONE_ID=Z0620945ZL1W5B67P31
+HOSTED_ZONE_ID=Z0620945ZL1W5B67P314
 #here, mysql or mongodb instance_type should be t3.medium, for others it is t2.micro
 
     for i in $@
