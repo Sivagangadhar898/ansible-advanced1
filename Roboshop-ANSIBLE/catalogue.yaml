@@ -62,10 +62,7 @@
     ansible.builtin.systemd:
       daemon_reload: true
   
-  - name: Install MongoDB
-    ansible.builtin.yum:
-      name: mongodb-org-shell
-      state: installed
+  
   
   - name: load catalogue data
     ansible.builtin.command: mongo --host mongodb.joiningindevops.online </app/schema/catalogue.js
