@@ -5,6 +5,7 @@ INSTANCE_TYPE=""
 IMAGE_ID=ami-0ab62d4858e6e2a26
 SECURITY_GROUP_ID=sg-044648b9b2c8833e8
 DOMAIN_NAME=joiningindevops.online
+HOSTED_ZONE_ID=Z0620945ZL1W5B67P314
 
 #here, mysql or mongodb instance_type should be t3.medium, for others it is t2.micro
 
@@ -21,7 +22,7 @@ fi
     echo "creating $i instance"
     IP_ADDRESS=$(aws ec2 run-instances --image-id $IMAGE_ID --instance-type $INSTANCE_TYPE --security-group-ids $SECURITY_GROUP_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" | jq -r '.Instances[0].PrivateIpAddress')
     echo "created $i instance: $IP_ADDRESS"
-    aws route53 change-resource-record-sets --hosted-zone-id Z05518102WFCFT3ITDVAC --change-batch '
+    aws route53 change-resource-record-sets --hosted-zone-id $HOSTED_ZONE_ID --change-batch '
     {
         "Changes": [{
             "Action": "CREATE",
