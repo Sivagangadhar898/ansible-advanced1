@@ -33,5 +33,5 @@ fi
                                  "ResourceRecords": [{ "Value": "'$IP_ADDRESS'"}]
                                  }}]
                         }
-                        '
+                        
 done
