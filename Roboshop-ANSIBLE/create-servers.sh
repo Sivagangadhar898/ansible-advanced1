@@ -3,7 +3,7 @@
 NAMES=$@
 INSTANCE_TYPE=""
 IMAGE_ID=ami-0ab62d4858e6e2a26
-SECURITY_GROUP_ID=sg-0feb1eadee760c918
+SECURITY_GROUP_ID=sg-044648b9b2c8833e8
 DOMAIN_NAME=joiningindevops.online
 
 #here, mysql or mongodb instance_type should be t3.medium, for others it is t2.micro
