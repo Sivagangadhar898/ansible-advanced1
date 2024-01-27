@@ -87,7 +87,7 @@
       state: restarted
       enabled: true
 
-   - name: install dependencies
+  - name: install dependencies
     ansible.builtin.command: npm install
     args:
       chdir: /app
