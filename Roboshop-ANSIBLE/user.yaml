@@ -65,6 +65,7 @@
     ansible.builtin.service:
     name: user
     state: started
+    enabled: yes
     
   
   - name: copy mongo repo to yum.repos.d
@@ -85,12 +86,9 @@
     ansible.builtin.service:
       name: user
       state: restarted
-      enabled: true
+      
 
-  - name: install dependencies
-    ansible.builtin.command: npm install
-    args:
-      chdir: /app
+ 
   
   
 
