@@ -17,33 +17,33 @@
    name: create user roboshop
     become: yes
     ansible.builtin.user:
-    name: roboshop
+      name: roboshop
 
   - name: check /app directory exists or not
     ansible.builtin.stat:
-    path: /app
-    register: box
+      path: /app
+      register: box
 
   - name: print message
     ansible.builtin.debug:
-    msg: "output is: {{box}}"
-  
+      msg: "output is: {{box}}"
+    
   - when: box.stat.exists == false
     name: create /app directory
     ansible.builtin.file:
-    path: /app
-    dest: directory
+      path: /app
+      dest: directory
 
   - name: download user artifact
     ansible.builtin.url:
-    url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
-    dest: /tmp
-  
+      url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
+      dest: /tmp
+    
   - name: unarchive catalogue.zip
     ansible.builtin.unarchive:
-    src: /tmp/user.zip
-    dest: /app
-    remote_src: yes
+      src: /tmp/user.zip
+      dest: /app
+      remote_src: yes
   
   - name: install maven package
     ansible.builtin.command: mvn clean package
@@ -57,9 +57,9 @@
 
   - name: copy shipping services
     ansible.builtin.copy:
-    src: shipping.service
-    dest: /etc/systemd/system/shipping.service
-  
+      src: shipping.service
+      dest: /etc/systemd/system/shipping.service
+    
   - name: deamon reload
     ansible.builtin.systemd:
      daemon_reload: true
