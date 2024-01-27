@@ -38,14 +38,9 @@
       path: /app
       dest: directory
     
-  - name: download payment artifact
-    ansible.builtin.url:
-    url: https://roboshop-builds.s3.amazonaws.com/payment.zip
-      dest: /tmp
-
-  - name: unarchive payment.zip
+  - name: download payment artifact and unarchive
     ansible.builtin.unarchive:
-      src: /tmp/payment.zip
+      src: https://roboshop-builds.s3.amazonaws.com/payment.zip
       dest: /app
       remote_src: yes
   
