@@ -28,7 +28,7 @@
 
   - name: print message
     ansible.builtin.debug:
-    msg: "output is: {{box}}"
+      msg: "output is: {{box}}"
   
   - when: box.stat.exists == false
     name: create /app directory
