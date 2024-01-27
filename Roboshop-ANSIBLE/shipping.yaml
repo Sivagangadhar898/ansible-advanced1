@@ -19,20 +19,20 @@
     ansible.builtin.user:
       name: roboshop
 
-  - name: check /app directory exists or not
-    ansible.builtin.stat:
+   - name: check /app directory exists or not
+     ansible.builtin.stat:
       path: /app
       register: box
-
-  - name: print message
+  
+  - name: print msg
     ansible.builtin.debug:
-      msg: "output is: {{box}}"
-    
-  - when: box.stat.exists == false
+     msg: "output is: {{box}}"
+
+  - when: box.stat.exists == False
     name: create /app directory
     ansible.builtin.file:
       path: /app
-      dest: directory
+      state: directory
     
   - name: download shipping and extract shipping.zip
     ansible.builtin.unarchive:
