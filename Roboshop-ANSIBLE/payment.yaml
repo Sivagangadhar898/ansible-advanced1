@@ -29,9 +29,10 @@
 
   - name: print message
     ansible.builtin.debug:
+      msg: "output: {{box}}"
       
   
-  - when: box.stat.exists == false
+  - when: box.stat.exists == False
     name: create /app directory
     ansible.builtin.file:
       path: /app
@@ -63,9 +64,10 @@
      daemon_reload: true
 
   - name: start and enable payment service
-   ansible.builtin.service: 
-    state: started
-    enabled: true
+    ansible.builtin.service: 
+      name: payment
+      state: started
+      enabled: true
 
 
   
