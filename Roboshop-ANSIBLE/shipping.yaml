@@ -19,10 +19,10 @@
     ansible.builtin.user:
       name: roboshop
 
-   - name: check /app directory exists or not
-     ansible.builtin.stat:
+  - name: check /app directory exists or not
+    ansible.builtin.stat:
       path: /app
-      register: box
+    register: box
   
   - name: print msg
     ansible.builtin.debug:
