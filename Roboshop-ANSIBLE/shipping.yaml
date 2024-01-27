@@ -33,15 +33,10 @@
     ansible.builtin.file:
       path: /app
       dest: directory
-
-  - name: download user artifact
-    ansible.builtin.url:
-      url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
-      dest: /tmp
     
-  - name: unarchive catalogue.zip
+  - name: download shipping and extract shipping.zip
     ansible.builtin.unarchive:
-      src: /tmp/user.zip
+      src: https://roboshop-builds.s3.amazonaws.com/shipping.zip
       dest: /app
       remote_src: yes
   
