@@ -39,7 +39,7 @@
   - name: download user artifact
     ansible.builtin.url:
     url: https://roboshop-builds.s3.amazonaws.com/user.zip
-     dest: /tmp
+    dest: /tmp
   
   - name: unarchive user.zip
     ansible.builtin.unarchive:
