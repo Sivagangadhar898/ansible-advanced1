@@ -3,7 +3,7 @@
   become: yes
   tasks:
   - name: configure yum repos
-    ansible.builtin.shell:
+    ansible.builtin.shell: "{{item}}"
     loop:
     - curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
     - curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
