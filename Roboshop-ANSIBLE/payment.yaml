@@ -32,7 +32,7 @@
       msg: "output: {{box}}"
       
   
-  - when: box.stat.exists == False
+  - when: box.stat.exists == false
     name: create /app directory
     ansible.builtin.file:
       path: /app
