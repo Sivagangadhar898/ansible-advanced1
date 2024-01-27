@@ -25,18 +25,17 @@
   - name: check /app directory exists or not
     ansible.builtin.stat:
       path: /app
-      register: box
-
-  - name: print message
-    ansible.builtin.debug:
-      msg: "output: {{box}}"
-      
+    register: box
   
-  - when: box.stat.exists == false
+  - name: print msg
+    ansible.builtin.debug:
+     msg: "output is: {{box}}"
+
+  - when: box.stat.exists == False
     name: create /app directory
     ansible.builtin.file:
       path: /app
-      dest: directory
+      state: directory
     
   - name: download payment artifact and unarchive
     ansible.builtin.unarchive:
