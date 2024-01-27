@@ -19,12 +19,12 @@
     name: create user roboshop
     become: yes
     ansible.builtin.user:
-    name: roboshop
+      name: roboshop
 
   - name: check app directory exists or not
     ansible.builtin.stat:
-    path: /app
-    register: box
+      path: /app
+      register: box
 
   - name: print message
     ansible.builtin.debug:
@@ -33,19 +33,19 @@
   - when: box.stat.exists == false
     name: create /app directory
     ansible.builtin.file:
-    path: /app
-    dest: directory
+      path: /app
+      dest: directory
 
   - name: download user artifact
     ansible.builtin.url:
     url: https://roboshop-builds.s3.amazonaws.com/user.zip
-    dest: /tmp
+     dest: /tmp
   
   - name: unarchive user.zip
     ansible.builtin.unarchive:
-    src: /tmp/user.zip
-    dest: /app
-    remote_src: yes
+      src: /tmp/user.zip
+      dest: /app
+      remote_src: yes
 
   - name: install dependencies
     ansible.builtin.command: npm install
@@ -54,8 +54,8 @@
 
   - name: copy user services
     ansible.builtin.copy:
-    src: user.service
-    dest: /etc/systemd/system/user.service
+      src: user.service
+      dest: /etc/systemd/system/user.service
 
   - name: deamon reload
     ansible.builtin.systemd:
@@ -63,10 +63,10 @@
   
   - name: start and enable service
     ansible.builtin.service:
-    name: user
-    state: started
-    enabled: yes
-    
+      name: user
+      state: started
+      enabled: yes
+      
   
   - name: copy mongo repo to yum.repos.d
     ansible.builtin.copy:
