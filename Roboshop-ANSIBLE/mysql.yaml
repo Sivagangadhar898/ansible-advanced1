@@ -7,16 +7,17 @@
   
   - name: copy mysql services
     ansible.builtin.copy:
-      src: mysql.service
+      src: mysql.repo
       dest: /etc/systemd/system/mysql.service
   
   - name: install myql community server
     ansible.builtin.yum:
-      name: mysql-community-server -y
+      name: mysql-community-server
       state: installed
 
   -name: start and enable mysqld service
    ansible.builtin.service: 
+    name: mysqld
     state: started
     enabled: true
   
