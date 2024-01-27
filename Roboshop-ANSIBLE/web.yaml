@@ -1,5 +1,5 @@
-- name: Install MongoDB component
-  hosts: mongodb
+- name: Install web component
+  hosts: web
   become: yes
   tasks:
   - name: install nginx

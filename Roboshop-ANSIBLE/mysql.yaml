@@ -1,0 +1,37 @@
+- name: installing mysql component
+  hosts: mysql
+  become: yes
+  tasks:
+
+  - name: disable myql
+    ansible.builtin.command: yum module disable mysql -y 
+  
+  - name: copy mysql services
+    ansible.builtin.copy:
+    src: mysql.service
+    dest: /etc/systemd/system/mysql.service
+  
+  - name: install myql community server
+    ansible.builtin.yum:
+    name: mysql-community-server -y
+    state: installed
+
+  -name: start and enable mysqld service
+   ansible.builtin.service: 
+    state: started
+    enabled: true
+  
+  - name: changing default root password
+    ansible.builtin.command: mysql_secure_installation --set-root-pass RoboShop@1
+
+  
+  
+
+  
+
+  
+
+  
+
+
+    

@@ -1,0 +1,99 @@
+- name: installing user component
+  hosts: user
+  become: yes
+  tasks:
+  - name: install npm source
+    ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
+  
+  - name: install NODEJS
+    ansible.builtin.yum:
+      name: nodejs
+      state: installed
+  
+  - name: check user roboshop exit or not
+    ansible.builtin.command: id roboshop
+    register: output
+    ignore_errors: true
+
+  - when: output.rc !=0
+   name: create user roboshop
+    become: yes
+    ansible.builtin.user:
+    name: roboshop
+
+  - name: check /app directory exists or not
+    ansible.builtin.stat:
+    path: /app
+    register: box
+
+  - name: print message
+    ansible.builtin.debug:
+    msg: "output is: {{box}}"
+  
+  - when: box.stat.exists == false
+    name: create /app directory
+    ansible.builtin.file:
+    path: /app
+    dest: directory
+
+  - name: download user artifact
+    ansible.builtin.url:
+    url: https://roboshop-builds.s3.amazonaws.com/user.zip
+    dest: /tmp
+  
+  - name: unarchive catalogue.zip
+    ansible.builtin.unarchive:
+    src: /tmp/user.zip
+    dest: /app
+    remote_src: yes
+
+  - name: install dependencies
+    ansible.builtin.command: npm install
+    args:
+      chdir: /app
+
+  - name: copy user services
+    ansible.builtin.copy:
+    src: user.service
+    dest: /etc/systemd/system/user.service
+
+  - name: deamon reload
+    ansible.builtin.systemd:
+      daemon_reload: true
+  
+  - name: start and enable service
+    ansible.builtin.service:
+    name: user
+    state: started
+    
+  
+  - name: copy mongo repo to yum.repos.d
+    ansible.builtin.copy:
+      src: mongodb.repo
+      dest: /etc/yum.repos.d/mongo.repo
+
+  
+  - name: install mongodb
+    ansible.builtin.yum:
+      name: mongodb-org-shell
+      state: installed
+
+  - name: load schema
+    ansible.builtin.command: mongo --host mongodb.joiningindevops.online < /app/schema/user.js
+  
+  - name: restart user service
+    ansible.builtin.service:
+      name: user
+      state: restarted
+      enabled: true
+
+   - name: install dependencies
+    ansible.builtin.command: npm install
+    args:
+      chdir: /app
+  
+  
+
+  
+
+  
