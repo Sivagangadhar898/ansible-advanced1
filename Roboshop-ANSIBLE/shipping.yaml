@@ -59,7 +59,7 @@
     ansible.builtin.systemd:
       daemon_reload: true
 
-  - name: start and enable cart service
+  - name: start and enable shipping service
     ansible.builtin.service: 
       state: started
       enabled: true
