@@ -36,7 +36,7 @@
 
   - name: download user artifact
     ansible.builtin.url:
-    url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
+      url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
       dest: /tmp
     
   - name: unarchive catalogue.zip
@@ -62,7 +62,7 @@
     
   - name: deamon reload
     ansible.builtin.systemd:
-     daemon_reload: true
+      daemon_reload: true
 
   - name: start and enable cart service
     ansible.builtin.service: 
