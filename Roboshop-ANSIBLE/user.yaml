@@ -1,91 +1,82 @@
-   - name: Installing user components
-     hosts: user
-     become: yes
-     tasks:
-    - name: setup NPM source
-      ansible.builtin.shell: "curl -sL https://rpm.nodesource.com/setup_lts.x | bash"
-    
-    - name: Install N0de-JS
-      ansible.builtin.yum:
-        name: nodejs 
-        state: installed
-        
-    - name: check roboshop user exist or not
-      ansible.builtin.command: id roboshop
-      register: output 
-      ignore_errors: true
+- name: Installing user components
+  hosts: user
+  become: yes
+  tasks:
+  - name: setup NPM source
+    ansible.builtin.shell: "curl -sL https://rpm.nodesource.com/setup_lts.x | bash"
+  
+  - name: Install N0de-JS
+    ansible.builtin.yum:
+      name: nodejs 
+      state: installed
+      
+  - name: check roboshop user exist or not
+    ansible.builtin.command: id roboshop
+    register: output 
+    ignore_errors: true
 
-      when: output.rc != 0 
-    - name: create user roboshop
-      become: yes 
-      ansible.builtin.user:
-        name: roboshop
-        
-    - name: check /app directory exists or not
-      ansible.builtin.stat:
-        path: /app
-      register: box
-    
-    - name: print msg
-      ansible.builtin.debug:
-      msg: "output is: {{box}}"
+    when: output.rc != 0 
+  - name: create user roboshop
+    become: yes 
+    ansible.builtin.user:
+      name: roboshop
+       
+  - name: check /app directory exists or not
+    ansible.builtin.stat:
+      path: /app
+    register: box
+  
+  - name: print msg
+    ansible.builtin.debug:
+     msg: "output is: {{box}}"
 
-    - when: box.stat.exists == False
-      name: create /app directory
-      ansible.builtin.file:
-        path: /app
-        state: directory
+  - when: box.stat.exists == False
+    name: create /app directory
+    ansible.builtin.file:
+      path: /app
+      state: directory
 
-    - name: download artifaft
-      ansible.builtin.get_url:
-        url: https://roboshop-builds.s3.amazonaws.com/user.zip
-        dest: /tmp
+  - name: download artifaft
+    ansible.builtin.get_url:
+      url: https://roboshop-builds.s3.amazonaws.com/user.zip
+      dest: /tmp
 
-    - name: extract user artifact
-      ansible.builtin.unarchive:
-        src: /tmp/user.zip
-        dest: /app
-        remote_src: yes
+  - name: extract user artifact
+    ansible.builtin.unarchive:
+      src: /tmp/user.zip
+      dest: /app
+      remote_src: yes
 
-    - name: install dependencies
-      ansible.builtin.command: npm install
-      args:
-        chdir: /app
-    
-    
-    - name: copy user service
-      ansible.builtin.copy:
-        src: user.service
-        dest: /etc/systemd/system/user.service
-    
-    - name: deamon reload
-      ansible.builtin.systemd:
-        daemon_reload: true
-
-    - name: copy mongo repo to yum.repos.d
-      ansible.builtin.copy:
-        src: mongodb.repo
-        dest: /etc/yum.repos.d/mongo.repo
-    
-    - name: Install MongoDB
-      ansible.builtin.yum:
-        name: mongodb-org-shell
-        state: installed
-    
-    - name: load user data
-      ansible.builtin.command: mongo --host mongodb.joiningindevops.online < /app/schema/user.js
-    
-    - name: restart user
-      ansible.builtin.service:
-        name: user
-        state: restarted
-        enabled: true
-
-
- 
+  - name: install dependencies
+    ansible.builtin.command: npm install
+    args:
+      chdir: /app
   
   
-
+  - name: copy user service
+    ansible.builtin.copy:
+      src: user.service
+      dest: /etc/systemd/system/user.service
   
+  - name: deamon reload
+    ansible.builtin.systemd:
+      daemon_reload: true
 
+  - name: copy mongo repo to yum.repos.d
+    ansible.builtin.copy:
+      src: mongodb.repo
+      dest: /etc/yum.repos.d/mongo.repo
   
+  - name: Install MongoDB
+    ansible.builtin.yum:
+      name: mongodb-org-shell
+      state: installed
+  
+  - name: load user data
+    ansible.builtin.command: mongo --host mongodb.joiningindevops.online < /app/schema/user.js
+  
+  - name: restart user
+    ansible.builtin.service:
+      name: user
+      state: restarted
+      enabled: true
