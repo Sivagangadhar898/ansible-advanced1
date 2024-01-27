@@ -40,7 +40,7 @@
     
   - name: download payment artifact
     ansible.builtin.url:
-      url: https://roboshop-builds.s3.amazonaws.com/payment.zip
+    url: https://roboshop-builds.s3.amazonaws.com/payment.zip
       dest: /tmp
 
   - name: unarchive payment.zip
