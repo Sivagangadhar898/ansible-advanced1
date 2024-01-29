@@ -21,7 +21,7 @@
 - name: load schema
   ansible.builtin.import_role:
     name: common
-    tasks_from: load-mongoschema
+    tasks_from: load-mongo-schema
     
 
 - name: setup systemd

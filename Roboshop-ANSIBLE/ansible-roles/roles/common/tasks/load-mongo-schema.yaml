@@ -9,4 +9,4 @@
     state: installed
   
 - name: load {{component}} data
-  ansible.builtin.command: "mongo --host mongodb.joiningindevops.online < /app/schema/{{component}}.js"
+  ansible.builtin.command: mongo --host mongodb.joiningindevops.online < /app/schema/{{component}}.js
