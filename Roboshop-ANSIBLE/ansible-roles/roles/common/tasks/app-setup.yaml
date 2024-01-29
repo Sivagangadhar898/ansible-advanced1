@@ -1,5 +1,5 @@
 - name: check roboshop user exist or not
-    ansible.builtin.command: id roboshop
+  ansible.builtin.command: id roboshop
     register: output 
     ignore_errors: true
 
@@ -16,7 +16,7 @@
   
   - name: print msg
     ansible.builtin.debug:
-     msg: "output is: {{box}}"
+      msg: "output is: {{box}}"
 
   - when: box.stat.exists == False
     name: create /app directory
