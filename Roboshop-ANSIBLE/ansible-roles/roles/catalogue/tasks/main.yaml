@@ -18,13 +18,16 @@
   args:
     chdir: /app
 
+- name: load schema
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: load-mongoschema
+    
+
 - name: setup systemd
   ansible.builtin.import_role:
     name: common
     tasks_from: systemd-setup
 
-- name: load schema
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: load-mongoschema
+
       
