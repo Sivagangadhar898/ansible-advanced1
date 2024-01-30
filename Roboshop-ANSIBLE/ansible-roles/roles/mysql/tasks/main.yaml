@@ -1,7 +1,11 @@
 - name: disable myql
   ansible.builtin.command: yum module disable mysql -y 
   
-
+- name: copy mysql repo
+  ansible.builtin.copy:
+    src: mysql.repo
+    dest: /etc/yum.repos.d/mysql.repo
+  
 - name: install myql community server
   ansible.builtin.yum:
     name: mysql-community-server 
