@@ -27,7 +27,7 @@
 
 - name: start application
   ansible.builtin.import_role:
-    name: shipping
+    name: common
     tasks_from: systemd-setup
 
   
