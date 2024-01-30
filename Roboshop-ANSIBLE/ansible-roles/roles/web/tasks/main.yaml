@@ -24,7 +24,7 @@
     url: https://roboshop-builds.s3.amazonaws.com/web.zip
     dest: /tmp
 
-- name: extract catalogue artifact
+- name: extract web artifact
   ansible.builtin.unarchive:
     src: /tmp/web.zip
     dest: /usr/share/nginx/html
