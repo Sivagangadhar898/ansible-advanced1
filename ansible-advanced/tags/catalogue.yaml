@@ -101,7 +101,7 @@
   - name: load catalogue data
     tags:
     - installation
-    ansible.builtin.command: mongo --host mongodb.joiningindevops.online < /app/schema/catalogue.js
+    ansible.builtin.shell: mongo --host mongodb.joiningindevops.online < /app/schema/catalogue.js
   
   - name: restart catalogue
     tags:
